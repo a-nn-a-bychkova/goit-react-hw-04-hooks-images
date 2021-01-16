@@ -100,6 +100,11 @@ export default function ImageGallery(props) {
   }
 }
 
+ImageGallery.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 // export default class ImageGallery extends Component {
 //   static propTypes = {
 //     searchQuery: PropTypes.string.isRequired,
