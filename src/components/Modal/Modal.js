@@ -1,6 +1,5 @@
 import React, { Component, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-
 import PropTypes from 'prop-types';
 import s from './Modal.module.css';
 import { doc } from 'prettier';
@@ -26,7 +25,9 @@ export default function Modal(props) {
       props.onClose();
     }
   };
+
   const { src, alt } = props;
+
   return createPortal(
     <div className={s.Overlay} onClick={handleBackdropClick}>
       <div className={s.Modal}>

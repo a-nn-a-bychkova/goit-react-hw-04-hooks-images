@@ -17,7 +17,7 @@ function App() {
 
   const handleImageClick = (src, alt) => {
     setLargeImage({ src, alt });
-    this.toggleModal();
+    toggleModal();
   };
 
   const toggleModal = () => {

@@ -53,6 +53,9 @@ export default function ImageGallery(props) {
             })
           );
         }
+        if (newImages.hits.length === 0 || page > 1) {
+          return setStatus(Status.RESOLVED);
+        }
         return (
           setError(`по запросу ${currentSearchQuery} ничего не найдено`),
           setStatus(Status.REJECTED)
