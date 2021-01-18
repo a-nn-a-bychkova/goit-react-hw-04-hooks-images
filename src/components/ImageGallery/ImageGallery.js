@@ -43,22 +43,21 @@ export default function ImageGallery(props) {
     imageAPI
       .fetchImage(currentSearchQuery, page)
       .then(newImages => {
-        if (newImages.hits.length > 0) {
+        if (newImages.hits.length === 0 && page === 1) {
           return (
-            setImages(images => [...images, ...newImages.hits]),
-            setStatus(Status.RESOLVED),
-            window.scrollTo({
-              top: document.documentElement.scrollHeight,
-              behavior: 'smooth',
-            })
+            setError(`по запросу ${currentSearchQuery} ничего не найдено`),
+            setStatus(Status.REJECTED)
           );
-        }
-        if (newImages.hits.length === 0 || page > 1) {
+        } else if (newImages.hits.length === 0 && page > 1) {
           return setStatus(Status.RESOLVED);
         }
         return (
-          setError(`по запросу ${currentSearchQuery} ничего не найдено`),
-          setStatus(Status.REJECTED)
+          setImages(images => [...images, ...newImages.hits]),
+          setStatus(Status.RESOLVED),
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+          })
         );
       })
       .catch(error => {
